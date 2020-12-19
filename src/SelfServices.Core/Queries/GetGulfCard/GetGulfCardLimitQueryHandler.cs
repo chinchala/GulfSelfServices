@@ -11,9 +11,9 @@ namespace SelfServices.Core.Queries.GetGulfCard
 {
     public class GetGulfCardLimitQueryHandler : IRequestHandler<GetGulfCardLimitQuery, IEnumerable<GetGulfCardLimitQueryResult>>
     {
-        private readonly IGulfCardReposiotry _repository;
+        private readonly IGulfCardRepository _repository;
         private readonly IMapper _mapper;
-        public GetGulfCardLimitQueryHandler(IGulfCardReposiotry repository, IMapper mapper)
+        public GetGulfCardLimitQueryHandler(IGulfCardRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -23,7 +23,7 @@ namespace SelfServices.Core.Queries.GetGulfCard
         {
             List<GetGulfCardLimitQueryResult> result = new List<GetGulfCardLimitQueryResult>();
 
-            var fueltypes = await _repository.GetFueltTypes(request.UscId);
+            var fueltypes = await _repository.GetFuelTypes(request.UscId);
             if (fueltypes == null)
                 return result;
 
@@ -32,7 +32,7 @@ namespace SelfServices.Core.Queries.GetGulfCard
                 var limit = await _repository.GetCardLimit(request.UscId, request.RfId, fuelType.Id);
                 var limitResult = new GetGulfCardLimitQueryResult
                 {
-                    Limit = limit,
+                    Limit = limit.Rem_Limit,
                     FuelId = fuelType.Id,
                     FuelName = fuelType.Name
                 };

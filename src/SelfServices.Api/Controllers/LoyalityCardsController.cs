@@ -1,12 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SelfServices.Core.Commands.LoyalityCardTransaction;
-using SelfServices.Core.Queries;
 using SelfServices.Core.Queries.GetLoyalityCard;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SelfServices.Api.Controllers
@@ -15,10 +10,12 @@ namespace SelfServices.Api.Controllers
     public class LoyalityCardsController : BaseController
     {
         [HttpGet]
+        [Route("GetDiscounts")]
         public async Task<IEnumerable<GetLoyalityCardDiscountQueryResult>> GetDiscount([FromQuery] GetLoyalityCardDiscountQuery query)
             => await Mediator.Send(query);
 
         [HttpPost]
+        [Route("UpdateTransaction")]
         public async Task Transaction(UpdateLoyalityCardTransactionCommand command)
             => await Mediator.Send(command);
     }

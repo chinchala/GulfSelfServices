@@ -14,6 +14,7 @@ namespace SelfServices.Infrastructure
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddTransient<ILoalityCardsRepository, LoalityCardsRepository>();
+            services.AddTransient<IGulfCardRepository, GulfCardRepository>();
 
             return services;
         }

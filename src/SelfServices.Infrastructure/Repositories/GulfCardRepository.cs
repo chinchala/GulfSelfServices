@@ -8,7 +8,7 @@ using SelfServices.Core.Repositories;
 
 namespace SelfServices.Infrastructure.Repositories
 {
-    public class GulfCardRepository : BaseRepository, IGulfCardReposiotry
+    public class GulfCardRepository : BaseRepository, IGulfCardRepository
     {
         private const string ConnectionSring = "STWZ";
         public GulfCardRepository(IConfiguration config)
@@ -17,9 +17,9 @@ namespace SelfServices.Infrastructure.Repositories
 
         }
 
-        public async Task<decimal> GetCardLimit(string uscId, string rfId, int productId, bool reserve = false)
+        public async Task<CardLimit> GetCardLimit(string uscId, string rfId, int productId, bool reserve = false)
         {
-            return await GetAsync<decimal>("CHECK_LIMITS",
+            var result = await GetAsync<CardLimit>("CHECK_LIMITS",
             new
             {
                 USC_ID = uscId,
@@ -28,11 +28,13 @@ namespace SelfServices.Infrastructure.Repositories
                 TagPreType = reserve ? 0 : -99,
                 REQIP = "192.168.88.78"
             });
+
+            return result;
         }
 
-        public async Task<IEnumerable<FuelType>> GetFueltTypes(string uscId)
+        public async Task<IEnumerable<FuelType>> GetFuelTypes(string uscId)
         {
-            return await GetListAsync<FuelType>("", new { USC_ID = uscId });
+            return await GetListAsync<FuelType>("spGetProductsByUscId", new { USC_ID = uscId });
         }
     }
 }

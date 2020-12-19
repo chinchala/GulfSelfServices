@@ -5,9 +5,9 @@ using SelfServices.Core.Queries.GetGulfCard;
 
 namespace SelfServices.Core.Repositories
 {
-    public interface IGulfCardReposiotry
+    public interface IGulfCardRepository
     {
-        Task<decimal> GetCardLimit(string uscId, string rfId, int productId, bool reserve = false);
-        Task<IEnumerable<FuelType>> GetFueltTypes(string uscId);
+        Task<CardLimit> GetCardLimit(string uscId, string rfId, int productId, bool reserve = false);
+        Task<IEnumerable<FuelType>> GetFuelTypes(string uscId);
     }
 }

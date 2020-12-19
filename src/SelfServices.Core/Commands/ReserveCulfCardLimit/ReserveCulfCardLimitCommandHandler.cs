@@ -7,8 +7,8 @@ namespace SelfServices.Core.Commands.ReserveCulfCardLimit
 {
     public class ReserveCulfCardLimitCommandHandler : IRequestHandler<ReserveCulfCardLimitCommand>
     {
-        private readonly IGulfCardReposiotry _repository;
-        public ReserveCulfCardLimitCommandHandler(IGulfCardReposiotry repository)
+        private readonly IGulfCardRepository _repository;
+        public ReserveCulfCardLimitCommandHandler(IGulfCardRepository repository)
         {
             _repository = repository;
         }
