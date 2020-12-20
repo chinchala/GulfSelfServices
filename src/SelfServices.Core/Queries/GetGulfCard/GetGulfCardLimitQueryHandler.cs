@@ -32,7 +32,7 @@ namespace SelfServices.Core.Queries.GetGulfCard
                 var limit = await _repository.GetCardLimit(request.UscId, request.RfId, fuelType.Id);
                 var limitResult = new GetGulfCardLimitQueryResult
                 {
-                    Limit = limit.Rem_Limit,
+                    Limit = limit.AUTHORIZE,
                     FuelId = fuelType.Id,
                     FuelName = fuelType.Name
                 };

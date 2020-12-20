@@ -20,10 +20,13 @@ namespace SelfServices.Infrastructure.Repositories
 
         public async Task<IEnumerable<LoyalityCardDiscount>> GetDiscountsAsync(GetLoyalityCardDiscountQuery query)
         {
-            var discounted = await GetListAsync<LoyalityCardDiscount>("spCheckDiscounts", query);
-            var prices = await GetListAsync<FuelType>("spGetProductPricesByUscId", new { USC_ID = query.USCID });
-            discounted =discounted.Join(prices, x => x.FUELID, x => x.Id, (x, y) => { x.FUEL_PRICE = y.Price - x.FUEL_PRICE; return x; });
-            return discounted;
+            // var discounted = await GetListAsync<LoyalityCardDiscount>("spCheckDiscounts", query);
+            // var prices = await GetListAsync<FuelType>("spGetProductPricesByUscId", new { USC_ID = query.USCID });
+            // discounted =discounted.Join(prices, x => x.FUELID, x => x.Id, (x, y) => { x.FUEL_PRICE = y.Price - x.FUEL_PRICE; return x; });
+            // return discounted;
+
+            return await GetListAsync<LoyalityCardDiscount>("spGetDiscounts", query);
+
         }
     }
 }

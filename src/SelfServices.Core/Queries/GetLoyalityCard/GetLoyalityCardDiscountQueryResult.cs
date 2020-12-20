@@ -10,6 +10,6 @@ namespace SelfServices.Core.Queries.GetLoyalityCard
     {
         public string FuelId { get; set; }
         public string FuelName { get; set; }
-        public string FuelPrice { get; set; }
+        public string Discount { get; set; }
     }
 }

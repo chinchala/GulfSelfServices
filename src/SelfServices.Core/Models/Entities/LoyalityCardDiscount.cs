@@ -2,8 +2,8 @@
 {
     public class LoyalityCardDiscount
     {
-        public int FUELID { get; set; }
-        public string FUELNAME { get; set; }
-        public decimal FUEL_PRICE { get; set; }
+        public int FuelId { get; set; }
+        public string FuelName { get; set; }
+        public decimal Discount { get; set; }
     }
 }

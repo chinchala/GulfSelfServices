@@ -9,9 +9,8 @@ namespace SelfServices.Core.Mapping
     {
         public MappingProFile()
         {
-            // CreateMap<List<LoyalityCardDiscount>, List<GetLoyalityCardDiscountQueryResult>>();
-            CreateMap<LoyalityCardDiscount, GetLoyalityCardDiscountQueryResult>()
-                .ForMember(x => x.FuelPrice, a => a.MapFrom(x => x.FUEL_PRICE));
+            CreateMap<LoyalityCardDiscount, GetLoyalityCardDiscountQueryResult>();
+            // .ForMember(x => x.Discount, a => a.MapFrom(x => x.FUEL_PRICE));
         }
     }
 }

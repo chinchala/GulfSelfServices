@@ -9,7 +9,7 @@ namespace SelfServices.Core.Queries.GetLoyalityCard
 {
     public class GetLoyalityCardDiscountQuery : IRequest<IEnumerable<GetLoyalityCardDiscountQueryResult>>
     {
-        public string RFID { get; set; }
-        public string USCID { get; set; }
+        public string RfId { get; set; }
+        public string UscId { get; set; }
     }
 }

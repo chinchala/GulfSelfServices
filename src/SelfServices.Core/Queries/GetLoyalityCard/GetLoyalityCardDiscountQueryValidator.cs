@@ -11,10 +11,10 @@ namespace SelfServices.Core.Queries.GetLoyalityCard
     {
         public GetLoyalityCardDiscountQueryValidator()
         {
-            RuleFor(x => x.RFID)
+            RuleFor(x => x.RfId)
                 .NotEmpty();
 
-            RuleFor(x => x.USCID)
+            RuleFor(x => x.UscId)
                 .NotEmpty();
         }
     }
