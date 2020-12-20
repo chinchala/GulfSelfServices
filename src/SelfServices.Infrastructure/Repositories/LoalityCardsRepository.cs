@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using SelfServices.Core.Commands.LoyalityCardTransaction;
 using SelfServices.Core.Models.Entities;
 using SelfServices.Core.Queries.GetLoyalityCard;
 using SelfServices.Core.Repositories;
@@ -27,6 +28,11 @@ namespace SelfServices.Infrastructure.Repositories
 
             return await GetListAsync<LoyalityCardDiscount>("spGetDiscounts", query);
 
+        }
+
+        public async Task UpdateLoyaltySales(UpdateLoyalityCardTransactionCommand command)
+        {
+            await ExecuteAsync("spUpdatesAfterLoyalityCardTransaction", command);
         }
     }
 }

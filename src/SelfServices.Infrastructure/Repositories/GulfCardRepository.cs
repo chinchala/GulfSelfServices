@@ -36,5 +36,10 @@ namespace SelfServices.Infrastructure.Repositories
         {
             return await GetListAsync<FuelType>("spGetProductsByUscId", new { USC_ID = uscId });
         }
+
+        public async Task UpdateGulfClubSales(long salesId, string rfId)
+        {
+            await ExecuteAsync("spUpdatesAfterGulfClubTransaction", new { Id = salesId, rfId });
+        }
     }
 }

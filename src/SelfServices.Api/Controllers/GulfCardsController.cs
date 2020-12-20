@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SelfServices.Core.Commands.GulfClubTransactionCommand;
 using SelfServices.Core.Commands.ReserveCulfCardLimit;
 using SelfServices.Core.Queries.GetGulfCard;
 
@@ -16,6 +17,11 @@ namespace SelfServices.Api.Controllers
         [HttpPost]
         [Route("ReserveCardLimits")]
         public async Task ReserveCardLimits(ReserveCulfCardLimitCommand command)
+            => await Mediator.Send(command);
+
+        [HttpPost]
+        [Route("UpdateTransaction")]
+        public async Task Transaction(GulfClubTransactionCommand command)
             => await Mediator.Send(command);
     }
 }
