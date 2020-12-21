@@ -15,6 +15,8 @@ namespace SelfServices.Core.Commands.ReserveCulfCardLimit
         public async Task<Unit> Handle(ReserveCulfCardLimitCommand request, CancellationToken cancellationToken)
         {
             var limit = await _repository.GetCardLimit(request.UscId, request.RfId, request.FuelId, true);
+            if (limit.Result != "OK")
+                throw new System.Exception(limit.Result);
             return Unit.Value;
         }
     }

@@ -26,15 +26,15 @@ namespace SelfServices.Infrastructure.Repositories
                 RFID = rfId,
                 PRODUCT_ID = productId,
                 TagPreType = reserve ? 0 : -99,
-                REQIP = "192.168.88.78"
+                REQIP = "10.10.10.245"
             });
 
             return result;
         }
 
-        public async Task<IEnumerable<FuelType>> GetFuelTypes(string uscId)
+        public async Task<IEnumerable<FuelType>> GetFuelTypes(string uscId, string rfId)
         {
-            return await GetListAsync<FuelType>("spGetProductsByUscId", new { USC_ID = uscId });
+            return await GetListAsync<FuelType>("spGetProductsByUscId", new { UscId = uscId, RfId = rfId });
         }
 
         public async Task UpdateGulfClubSales(long salesId, string rfId)

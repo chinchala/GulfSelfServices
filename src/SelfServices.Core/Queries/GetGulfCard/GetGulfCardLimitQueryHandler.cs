@@ -23,20 +23,25 @@ namespace SelfServices.Core.Queries.GetGulfCard
         {
             List<GetGulfCardLimitQueryResult> result = new List<GetGulfCardLimitQueryResult>();
 
-            var fueltypes = await _repository.GetFuelTypes(request.UscId);
+            var fueltypes = await _repository.GetFuelTypes(request.UscId, request.RfId);
             if (fueltypes == null)
                 return result;
 
             foreach (var fuelType in fueltypes)
             {
                 var limit = await _repository.GetCardLimit(request.UscId, request.RfId, fuelType.Id);
+                if (limit.Result != "OK")
+                    continue;
+
                 var limitResult = new GetGulfCardLimitQueryResult
                 {
                     Limit = limit.AUTHORIZE,
                     FuelId = fuelType.Id,
                     FuelName = fuelType.Name
                 };
-                result.Add(limitResult);
+
+                if (limitResult.Limit > 0)
+                    result.Add(limitResult);
             }
 
             return result;

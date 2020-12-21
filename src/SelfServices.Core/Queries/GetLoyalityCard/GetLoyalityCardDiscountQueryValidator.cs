@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
+using SelfServices.Core.Queries.GetGulfCard;
 
 namespace SelfServices.Core.Queries.GetLoyalityCard
 {
@@ -11,6 +12,7 @@ namespace SelfServices.Core.Queries.GetLoyalityCard
     {
         public GetLoyalityCardDiscountQueryValidator()
         {
+            // Include<GetGulfCardLimitQueryValidator>();
             RuleFor(x => x.RfId)
                 .NotEmpty();
 

@@ -8,7 +8,7 @@ namespace SelfServices.Core.Repositories
     public interface IGulfCardRepository
     {
         Task<CardLimit> GetCardLimit(string uscId, string rfId, int productId, bool reserve = false);
-        Task<IEnumerable<FuelType>> GetFuelTypes(string uscId);
+        Task<IEnumerable<FuelType>> GetFuelTypes(string uscId,string rfId);
         Task UpdateGulfClubSales(long salesId, string rfId);
     }
 }

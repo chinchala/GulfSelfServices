@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SelfServices.Api.Infrastructure.Authentication;
+using SelfServices.Api.Infrastructure.Middlewares;
 using SelfServices.Core;
 using SelfServices.Infrastructure;
 
@@ -70,16 +71,20 @@ namespace SelfServices.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            // if (env.IsDevelopment())
+            // {
+            app.UseDeveloperExceptionPage();
+            // }
+
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
             {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "SelfServices.Api v1");
-                    c.RoutePrefix = string.Empty;
-                });
-            }
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SelfServices.Api v1");
+                c.RoutePrefix = string.Empty;
+            });
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseHttpsRedirection();
 
