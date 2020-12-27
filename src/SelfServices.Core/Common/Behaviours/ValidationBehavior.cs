@@ -32,7 +32,7 @@ namespace SelfServices.Core.Common.Behaviours
 
                 if (failures.Count != 0)
                 {
-                    throw new Exception(String.Join(";", failures));
+                    throw new Common.Exceptions.ValidationException(String.Join(";", failures));
                 }
             }
             return await next();

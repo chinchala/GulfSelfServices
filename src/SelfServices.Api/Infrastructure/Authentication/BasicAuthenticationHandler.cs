@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Security.Authentication;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -38,7 +39,7 @@ namespace SelfServices.Api.Infrastructure.Authentication
             var clientId = split[0];
             var clientSecret = split[1];
 
-            if (clientId != "1" || clientSecret != "2")
+            if (clientId != "noxton" || clientSecret != "XcYcnx-=wb9;WP*V")
                 return AuthenticateResult.Fail("Invalid Authorization Header");
 
             var claims = new[] {
@@ -50,6 +51,11 @@ namespace SelfServices.Api.Infrastructure.Authentication
             var ticket = new AuthenticationTicket(principal, Scheme.Name);
 
             return AuthenticateResult.Success(ticket);
+        }
+
+        protected override Task HandleChallengeAsync(AuthenticationProperties properties)
+        {
+            throw new AuthenticationException("Authorization is not valid");
         }
     }
 }

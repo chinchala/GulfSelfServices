@@ -16,6 +16,7 @@ using SelfServices.Api.Infrastructure.Authentication;
 using SelfServices.Api.Infrastructure.Middlewares;
 using SelfServices.Core;
 using SelfServices.Infrastructure;
+using Serilog;
 
 namespace SelfServices.Api
 {
@@ -71,10 +72,10 @@ namespace SelfServices.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            // if (env.IsDevelopment())
-            // {
-            app.UseDeveloperExceptionPage();
-            // }
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
 
 
             app.UseSwagger();
@@ -84,6 +85,9 @@ namespace SelfServices.Api
                 c.RoutePrefix = string.Empty;
             });
 
+            app.UseSerilogRequestLogging();
+
+            // app.UseMiddleware<LoggingMiddleware>();
             app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseHttpsRedirection();

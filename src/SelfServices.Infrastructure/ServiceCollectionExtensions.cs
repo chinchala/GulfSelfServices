@@ -15,6 +15,7 @@ namespace SelfServices.Infrastructure
         {
             services.AddTransient<ILoalityCardsRepository, LoalityCardsRepository>();
             services.AddTransient<IGulfCardRepository, GulfCardRepository>();
+            services.AddTransient<IValidationRepository, ValidationRepository>();
 
             return services;
         }
