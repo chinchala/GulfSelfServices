@@ -13,9 +13,9 @@ namespace SelfServices.Core.Commands.GulfClubTransactionCommand
     {
         public GulfClubTransactionCommandValidator(IValidationRepository repo)
         {
-            RuleFor(x => x.Id)
-                .SetValidator(new TransactionIdValidator(repo))
-                .GreaterThan(0);
+            //RuleFor(x => x.Id)
+            //    .SetValidator(new TransactionIdValidator(repo))
+            //    .GreaterThan(0);
 
             RuleFor(x => x.RfId)
                 .SetValidator(new RfIdValidator(repo))
