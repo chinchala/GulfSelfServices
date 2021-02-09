@@ -16,7 +16,7 @@ namespace SelfServices.Core.Commands.GulfClubTransactionCommand
 
         public async Task<Unit> Handle(GulfClubTransactionCommand command, CancellationToken cancellationToken)
         {
-            await _repository.UpdateGulfClubSales(command.Id, command.RfId);
+            await _repository.UpdateGulfClubSales(command.Id, command.TxnId, command.RfId);
             return Unit.Value;
         }
     }

@@ -19,7 +19,7 @@ namespace SelfServices.Infrastructure.Repositories
 
         public async Task<CardLimit> GetCardLimit(string uscId, string rfId, int productId, bool reserve = false)
         {
-            var result = await GetAsync<CardLimit>("CHECK_LIMITS",
+            var result = await GetAsync<CardLimit>("spCheckLimitsWithoutReservation",
             new
             {
                 USC_ID = uscId,
@@ -37,9 +37,9 @@ namespace SelfServices.Infrastructure.Repositories
             return await GetListAsync<FuelType>("spGetProductsByUscId", new { UscId = uscId, RfId = rfId });
         }
 
-        public async Task UpdateGulfClubSales(long salesId, string rfId)
+        public async Task UpdateGulfClubSales(long salesId, long TxnId, string rfId)
         {
-            await ExecuteAsync("spUpdatesAfterGulfClubTransaction", new { Id = salesId, rfId });
+            await ExecuteAsync("spUpdatesAfterGulfClubTransaction", new { Id = salesId, TxnId, rfId });
         }
     }
 }
