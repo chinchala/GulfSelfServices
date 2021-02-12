@@ -13,7 +13,7 @@ namespace SelfServices.Core.Commands.ReserveCulfCardLimit
                 .NotEmpty();
 
             RuleFor(x => x.RfId)
-                .SetValidator(new RfIdValidator(repo))
+                .SetValidator(new RfIdValidator(repo,0))
                 .NotEmpty();
 
             RuleFor(x => x.FuelId)

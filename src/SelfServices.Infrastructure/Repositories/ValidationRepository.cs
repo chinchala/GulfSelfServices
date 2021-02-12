@@ -17,9 +17,9 @@ namespace SelfServices.Infrastructure.Repositories
             return await GetAsync<bool>("spValidateFuelIdAsync", new { FuelId = fuelId });
         }
 
-        public async Task<bool> ValidateRfidAsync(string rfId)
+        public async Task<bool> ValidateRfidAsync(string rfId,int type)
         {
-            return await GetAsync<bool>("spValidateRfidAsync", new { RfId = rfId });
+            return await GetAsync<bool>("spValidateRfidAsync", new { RfId = rfId,Type=type });
         }
 
         public async Task<bool> ValidateTransactionIdAsync(long transactionId)

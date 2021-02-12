@@ -9,7 +9,7 @@ namespace SelfServices.Core.Queries.GetGulfCard
         public GetGulfCardLimitQueryValidator(IValidationRepository repo)
         {
             RuleFor(x => x.RfId)
-                .SetValidator(new RfIdValidator(repo))
+                .SetValidator(new RfIdValidator(repo,0))
                 .NotEmpty();
 
             RuleFor(x => x.UscId)

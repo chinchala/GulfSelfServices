@@ -15,7 +15,7 @@ namespace SelfServices.Core.Queries.GetLoyalityCard
         public GetLoyalityCardDiscountQueryValidator(IValidationRepository repo)
         {
             RuleFor(x => x.RfId)
-                .SetValidator(new RfIdValidator(repo))
+                .SetValidator(new RfIdValidator(repo,1))
                 .NotEmpty();
 
             RuleFor(x => x.UscId)
