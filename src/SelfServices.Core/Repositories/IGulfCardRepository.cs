@@ -9,6 +9,6 @@ namespace SelfServices.Core.Repositories
     {
         Task<CardLimit> GetCardLimit(string uscId, string rfId, int productId, bool reserve = false);
         Task<IEnumerable<FuelType>> GetFuelTypes(string uscId,string rfId);
-        Task UpdateGulfClubSales(long salesId, long TxnId, string rfId);
+        Task UpdateGulfClubSales(long? salesId, long? TxnId, string rfId);
     }
 }
