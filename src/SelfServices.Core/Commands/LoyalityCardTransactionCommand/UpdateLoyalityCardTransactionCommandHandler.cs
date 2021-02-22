@@ -16,6 +16,11 @@ namespace SelfServices.Core.Commands.LoyalityCardTransaction
 
         public async Task<Unit> Handle(UpdateLoyalityCardTransactionCommand command, CancellationToken cancellationToken)
         {
+            if (command.Id is null)
+                command.Id = 0;
+            if (command.TxnId is null)
+                command.TxnId = 0;
+
             await _repository.UpdateLoyaltySales(command);
             return Unit.Value;
         }
