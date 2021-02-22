@@ -12,6 +12,10 @@ namespace SelfServices.Core.Commands.LoyalityCardTransaction
             //    .SetValidator(new TransactionIdValidator(repo))
             //    .GreaterThan(0);
 
+            RuleFor(x => x.TxnId)
+                .NotNull()
+                .GreaterThan(0);
+
             RuleFor(x => x.RfId)
                 .SetValidator(new RfIdValidator(repo, 1))
                 .NotEmpty();
